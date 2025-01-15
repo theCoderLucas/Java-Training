@@ -2,9 +2,24 @@ package com.javaexperts.javasourcecode;
 
 import com.javaexperts.javasourcecode.core.ELevel;
 import com.javaexperts.javasourcecode.core.ETypes;
+import com.javaexperts.javasourcecode.logic.MediaShelf;
 import com.javaexperts.javasourcecode.models.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Main {
+    private static int getANumber() {
+        try {
+            return 1;
+        } catch (Exception e) {
+            return 2;
+        } finally {
+            return 3;
+        }
+    }
+
     public static void main(String[] args) {
         // data types
         boolean bool = true;
@@ -130,6 +145,47 @@ public class Main {
             System.out.println("Person found");
         } else {
             System.out.println("Person not found");
+        }
+
+        // generics example 2
+        MediaShelf<Book> bookShelf = new MediaShelf<>(2);
+        MediaShelf<Film> filmShelf = new MediaShelf<>(2);
+
+        Book book1 = new Book("Die drei ???", 2000);
+        Book book2 = new Book("Romeo und Julia", 1900);
+
+        Film film1 = new Film("Titanic", 1000000);
+        Film film2 = new Film("Mission Impossible", 250);
+
+        bookShelf.push(book1);
+        bookShelf.push(book2);
+        filmShelf.push(film1);
+        filmShelf.push(film2);
+
+        System.out.println((bookShelf.getMedia(0).isPresent())? bookShelf.getMedia(0).get() : "not available");
+        System.out.println((filmShelf.getMedia(1).isPresent())? filmShelf.getMedia(1).get() : "not available");
+
+        // try catch finally
+        int favNumber;
+
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            favNumber = scanner.nextInt();
+            System.out.println("My favorite number is: " + favNumber);
+        } catch (Exception e) {
+            System.out.println("Invalid Input");
+        } finally {
+            scanner.close();
+        }
+
+        System.out.println(Main.getANumber());
+
+        int[] sortedNums = { 3, 2, 1 };
+        Arrays.sort(sortedNums);
+
+        for (int num : sortedNums) {
+            System.out.println(num);
         }
     }
 }

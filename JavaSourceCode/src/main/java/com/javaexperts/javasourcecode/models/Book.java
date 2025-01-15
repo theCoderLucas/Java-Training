@@ -2,7 +2,7 @@ package com.javaexperts.javasourcecode.models;
 
 import java.util.Objects;
 
-public class Book {
+final public class Book {
     private String title;
     private int year;
 
@@ -37,5 +37,13 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(getTitle(), getYear());
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", year=" + year +
+                '}';
     }
 }
